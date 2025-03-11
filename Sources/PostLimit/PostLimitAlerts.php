@@ -5,10 +5,12 @@ namespace PostLimit;
 class PostLimitAlerts
 {
     protected PostLimitService $service;
+    protected PostLimitUtils $utils;
 
     public function __construct()
     {
         $this->service = new PostLimitService();
+        $this->utils = new PostLimitUtils();
     }
     public function handle(array &$alerts, array &$formats): void
     {
@@ -35,15 +37,16 @@ class PostLimitAlerts
         $entity = $this->service->getEntityByUser((int) $postLimitAlert['sender_id']);
         $alertPercentage = $this->service->calculatePercentage($entity);
 
-        if ($alertPercentage['postsLeft'] <= 0) {
-            return $this->service->buildErrorMessage($entity, $postLimitAlert['sender_name']);
-        }
+        $alertTextKey = $alertPercentage['postsLeft'] <= 0 ?
+            'message' : 'alert_message';
+        $alertTextTemplate = $this->utils->setting(('custom_' . $alertTextKey),
+            $this->utils->text($alertTextKey . '_default'));
 
-        return strtr($this->service->utils->text('alert_text'),
+        return strtr($alertTextTemplate,
             [
-                '{frequency}' => $this->service->utils->text('alert_frequency'),
+                '{user_name}' => $postLimitAlert['sender_name'],
                 '{limit}' => $alertPercentage['limit'],
-                '{postsLeft}' => $alertPercentage['postsLeft'],
+                '{posts_left}' => $alertPercentage['postsLeft'],
                 '{percentage}' => $alertPercentage['percentage'],
             ],
         );

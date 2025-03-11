@@ -36,7 +36,7 @@ class PostLimitAdmin
     {
         $this->loadRequiredFiles();
 
-        $admin_areas['config']['areas'][strtolower(PostLimit::NAME)] = array(
+        $admin_areas['config']['areas'][strtolower(PostLimit::NAME)] = [
             'label' => $this->utils->text('admin_panel'),
             'function' => [$this, 'main'],
             'icon' => 'security',
@@ -44,7 +44,7 @@ class PostLimitAdmin
                 self::SETTINGS => [$this->utils->text('admin_settings')],
                 self::PERMISSIONS => [$this->utils->text('admin_permissions')],
             ],
-        );
+        ];
     }
 
     public function main(): void

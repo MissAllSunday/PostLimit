@@ -51,10 +51,10 @@ $txt['PostLimit_alert_message_default'] = 'Hi {username}! you have reached {perc
 $txt['PostLimit_custom_alert_message'] = 'Put your custom alert message here';
 $txt['PostLimit_custom_alert_message_sub'] = 'Write a custom alert message the user will see when they reached the percentage to show an alert, 
 you can use the following tokens to personalize the message even more<br />
-- {username} will display the display name of the user who will receive the message<br />
+- {user_name} will display the display name of the user who will receive the message<br />
 - {limit} will display the amount of messages this particular user can make.<br />
 - {percentage} will show the percentage the user has reached.<br />
-- {post_left} The amount of posts the user can make before reaching their limit.<br />
+- {posts_left} The amount of posts the user can make before reaching their limit.<br />
  If you leave this message empty, the default message will appear:<br /><i>'. $txt['PostLimit_alert_message_default'] .'</i>';
 $txt['PostLimit_profile_panel'] = 'Post Limit profile panel';
 $txt['PostLimit_profile_panel_sub'] = 'You can set the post limit and the boards this limit will be applied for this user here';
@@ -85,8 +85,3 @@ $txt['PostLimit_message_cannot_general'] = 'Post Limit warning: %s';
 /* Scheduled Task */
 $txt['scheduled_task_post_limit'] = 'Post Limit mod';
 $txt['scheduled_task_desc_post_limit'] = 'Resets the post limit of every user down to 0.';
-
-// Alert text
-$txt['PostLimit_alert_text'] = 'You have reached {percentage}% of your {limit} {frequency} limit. You have {postsLeft} left.';
-$txt['PostLimit_alert_frequency'] = 'daily posts';
-$txt['PostLimit_alert_text_limit_reached'] = 'You have reached your ' . $txt['PostLimit_alert_frequency'] . ' limit.';
