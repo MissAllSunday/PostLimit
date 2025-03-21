@@ -23,7 +23,11 @@ class PostLimit
 
     public function __construct(?PostLimitService $service = null)
     {
+        global $sourcedir;
+
         //No DI :(
+        require_once($sourcedir . '/PostLimit/PostLimitService.php');
+
         $this->service = $service ?? new PostLimitService();
     }
 
