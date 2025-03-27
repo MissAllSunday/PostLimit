@@ -26,6 +26,9 @@ class PostLimit
         global $sourcedir;
 
         //No DI :(
+        require_once($sourcedir . '/PostLimit/PostLimitRepository.php');
+        require_once($sourcedir . '/PostLimit/PostLimitEntity.php');
+        require_once ($sourcedir . '/PostLimit/PostLimitUtil.php');
         require_once($sourcedir . '/PostLimit/PostLimitService.php');
 
         $this->service = $service ?? new PostLimitService();
@@ -34,10 +37,6 @@ class PostLimit
     public function s(): bool
     {
         global $sourcedir;
-
-        // Need to make sure we loaded these bad boys when running on cron.php
-        require_once($sourcedir . '/PostLimit/PostLimitRepository.php');
-        require_once($sourcedir . '/PostLimit/PostLimitEntity.php');
 
         $repository = new PostLimitRepository();
         $repository->resetPostCount();
