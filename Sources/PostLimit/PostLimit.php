@@ -28,7 +28,7 @@ class PostLimit
         //No DI :(
         require_once($sourcedir . '/PostLimit/PostLimitRepository.php');
         require_once($sourcedir . '/PostLimit/PostLimitEntity.php');
-        require_once ($sourcedir . '/PostLimit/PostLimitUtil.php');
+        require_once ($sourcedir . '/PostLimit/PostLimitUtils.php');
         require_once($sourcedir . '/PostLimit/PostLimitService.php');
 
         $this->service = $service ?? new PostLimitService();
