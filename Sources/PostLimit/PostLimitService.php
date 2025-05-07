@@ -21,7 +21,12 @@ class PostLimitService
 
     public function __construct(?PostLimitUtils $utils = null, ?PostLimitRepository $repository = null)
     {
+        global $sourcedir;
+
         //No DI :(
+        require_once($sourcedir . '/PostLimit/PostLimitRepository.php');
+        require_once ($sourcedir . '/PostLimit/PostLimitUtils.php');
+
         $this->utils = $utils ?? new PostLimitUtils();
         $this->repository = $repository ?? new PostLimitRepository();
     }
